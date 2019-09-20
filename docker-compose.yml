@@ -1,0 +1,50 @@
+influxdb:
+  image: influxdb:latest
+  container_name: influxdb
+  restart: always
+#  mem_limit: 192m
+  ports:
+    - "8083:8083"
+    - "8086:8086"
+    - "8090:8090"
+  env_file:
+    - 'env.influxdb'
+  volumes:
+    # Data persistency
+    - ./influxdb/data:/var/lib/influxdb
+    # Configuration
+    - ./influxdb/influxdb.conf:/etc/influxdb/influxdb.conf:ro
+
+telegraf:
+  image: telegraf:latest
+  container_name: telegraf
+  restart: always
+  environment:
+   - HOST_PROC=/host/proc
+  privileged: true
+#  mem_limit: 384m
+  ports:
+    # Expose Statsd UDP server to local host
+    - "8125:8125/udp"
+  links:
+    - influxdb
+  volumes:
+    - ./telegraf.conf:/etc/telegraf/telegraf.conf:ro
+    - /proc:/host/proc:ro
+
+grafana:
+  image: grafana/grafana:latest
+  container_name: grafana
+  restart: always
+#  mem_limit: 384m
+  ports:
+    - "3000:3000"
+  env_file:
+    - 'env.grafana'
+  links:
+    - influxdb
+  volumes:
+    # Data persistency
+    # sudo mkdir -p /srv/docker/grafana/data; chown 472:472 /srv/docker/grafana/data
+    - ./grafana/data:/var/lib/grafana
+    # - ./grafana/etc:/etc/grafana
