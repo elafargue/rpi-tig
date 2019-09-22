@@ -29,7 +29,7 @@ telegraf:
   links:
     - influxdb
   volumes:
-    - ./telegraf.conf:/etc/telegraf/telegraf.conf:ro
+    - ./telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
     - /proc:/host/proc:ro
 
 grafana:
@@ -47,4 +47,4 @@ grafana:
     # Data persistency
     # sudo mkdir -p /srv/docker/grafana/data; chown 472:472 /srv/docker/grafana/data
     - ./grafana/data:/var/lib/grafana
-    # - ./grafana/etc:/etc/grafana
+    - ./grafana/provisioning:/etc/grafana/provisioning
