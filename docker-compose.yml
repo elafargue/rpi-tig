@@ -3,10 +3,12 @@ influxdb:
   container_name: influxdb
   restart: always
 #  mem_limit: 192m
-  ports:
-    - "8083:8083"
-    - "8086:8086"
-    - "8090:8090"
+# Those ports don't need to be exposed to the local host, only
+# Telegraf/grafana are talking to it.
+#  ports:
+#    - "8083:8083"
+#    - "8086:8086"
+#    - "8090:8090"
   env_file:
     - 'env.influxdb'
   volumes:
