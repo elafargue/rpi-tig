@@ -35,7 +35,7 @@ telegraf:
     - /proc:/host/proc:ro
 
 grafana:
-  image: grafana/grafana:latest
+  image: grafana/grafana:master
   container_name: grafana
   restart: always
 #  mem_limit: 384m
