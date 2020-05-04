@@ -9,32 +9,15 @@ deleteDatasources:
 # list of datasources to insert/update depending
 # whats available in the database
 datasources:
-  # <string, required> name of the datasource. Required
 - name: Telegraf
-  # <string, required> datasource type. Required
   type: influxdb
-  # <string, required> access mode. direct ("Browser") or proxy ("Server"). Required
   access: proxy
-  # <int> org id. will default to orgId 1 if not specified
   orgId: 1
-  # <string> url
   url: http://influxdb:8086/
-  # <string> Deprecated, use secureJsonData.password
-  password:
-  # <string> database user, if used
-  user:
-  # <string> database name, if used
-  database: telegraf
-  # <bool> enable/disable basic auth
+  user: $INFLUXDB_USER
+  database: $INFLUXDB_DB
   basicAuth: false
-  # <string> basic auth username
-  basicAuthUser: admin
-  # <string> Deprecated, use secureJsonData.basicAuthPassword
-  basicAuthPassword:
-  # <bool> enable/disable with credentials headers
-  withCredentials:
-  # <bool> mark as default datasource. Max one per org
-  isDefault:
+  isDefault: true
   # <map> fields that will be converted to json and stored in json_data
   jsonData:
      graphiteVersion: "1.1"
@@ -42,6 +25,7 @@ datasources:
      tlsAuthWithCACert: false
   # <string> json object of data that will be encrypted.
   secureJsonData:
+     password: $INFLUXDB_USER_PASSWORD
   version: 1
   # <bool> allow users to edit datasources from the UI.
   editable: true
