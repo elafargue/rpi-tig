@@ -33,9 +33,10 @@ telegraf:
   volumes:
     - ./telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
     - /proc:/host/proc:ro
+    - /var/log:/host/var/log:ro
 
 grafana:
-  image: grafana/grafana:master
+  image: grafana/grafana
   container_name: grafana
   restart: always
 #  mem_limit: 384m
