@@ -1,0 +1,9 @@
+[Unit]
+Description=AX25 Listen Service
+After=network.target ax25dev.service
+
+[Service]
+ExecStart=/home/pi/bin/ax25listen
+
+[Install]
+WantedBy=multi-user.target
