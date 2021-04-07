@@ -1,5 +1,5 @@
 influxdb:
-  image: influxdb:latest
+  image: influxdb:1.8.4-alpine
   container_name: influxdb
   restart: always
 #  mem_limit: 192m
