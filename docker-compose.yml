@@ -1,5 +1,5 @@
 influxdb:
-  image: influxdb:1.8.4-alpine
+  image: influxdb:1.8.4
   container_name: influxdb
   restart: always
 #  mem_limit: 192m
@@ -36,7 +36,7 @@ telegraf:
     - /var/log:/host/var/log:ro
 
 grafana:
-  image: grafana/grafana
+  image: grafana/grafana:latest
   container_name: grafana
   restart: always
 #  mem_limit: 384m
