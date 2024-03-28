@@ -7,7 +7,14 @@ I just wanted a fire-and-forget way to quickly monitor a new Pi, this is it. On 
 apt-get install docker.io docker-compose
 ```
 
-... clone this repository, and do a single `./start.sh`. You should be set. After a couple of minutes (it's a Raspberry Pi after all), you will get the following:
+... clone this repository, and do:
+
+```
+./reset.sh
+./start.sh
+```
+
+You should be set. After a couple of minutes (it's a Raspberry Pi after all), you will get the following:
 
 - A telegraf instance gathering system stats, with statsd available on the local host for external log input
 - InfluxDB storing the telegraf data

@@ -14,18 +14,18 @@ datasources:
   access: proxy
   orgId: 1
   url: http://influxdb:8086/
-  user: $INFLUXDB_USER
-  database: $INFLUXDB_DB
   basicAuth: false
   isDefault: true
   # <map> fields that will be converted to json and stored in json_data
   jsonData:
-     graphiteVersion: "1.1"
      tlsAuth: false
      tlsAuthWithCACert: false
+     dbName: $DOCKER_INFLUXDB_INIT_BUCKET
+     httpHeaderName1: 'Authorization'
+     httpMode: POST
   # <string> json object of data that will be encrypted.
   secureJsonData:
-     password: $INFLUXDB_USER_PASSWORD
+     httpHeaderValue1: "Token $DOCKER_INFLUXDB_INIT_ADMIN_TOKEN"
   version: 1
   # <bool> allow users to edit datasources from the UI.
   editable: true
