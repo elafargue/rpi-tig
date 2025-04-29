@@ -38,7 +38,7 @@ echo "Changing ownership of grafana files to what the Docker image expects"
 #sudo chown -R 472:472 grafana/data
 
 echo "Starting TIG stack in the background"
-docker-compose up -d
+docker compose up -d
 
 echo -n "Waiting for InfluxDB to come up..."
 sleep 20
